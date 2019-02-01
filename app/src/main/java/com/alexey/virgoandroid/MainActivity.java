@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(this, "RESULT: " + "cancel" , Toast.LENGTH_LONG).show();
             }else {
                 String contents = result.getContents();
-                //webView.loadUrl("javascript:$('.test').text('"+contents+"')");
+                webView.loadUrl("javascript:$('.test').html('"+contents+"')");
             }
         }else{
             super.onActivityResult(requestCode, resultCode, data);
