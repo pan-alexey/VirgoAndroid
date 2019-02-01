@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Testing</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<br><br><br><br>
+	<div id="QRCODE"></div>
+<div class="test"></div>
+	<div class="btn btn-primary" onclick="btnClick('text')">Спулае мулае</div>
+</body>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+	btnClick=function(){
+		//_API.showToast('text');
+		_API.openScannerCamera();
+	}
+</script>
+
+
+</html>
