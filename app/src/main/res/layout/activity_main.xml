@@ -23,23 +23,23 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardCornerRadius="10dp"
             app:cardPreventCornerOverlap="false">
 
-            <SurfaceView
-                android:id="@+id/QR_SurfaceView"
+            <FrameLayout
+                android:id="@+id/ZBAR_Frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
         </android.support.v7.widget.CardView>
-
-
     </android.support.constraint.ConstraintLayout>
+
+
+
+
 
 
 

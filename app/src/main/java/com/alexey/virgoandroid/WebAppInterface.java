@@ -8,8 +8,6 @@ import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 public class WebAppInterface extends MainActivity{
     Context context;
@@ -42,26 +40,26 @@ public class WebAppInterface extends MainActivity{
 
     @JavascriptInterface
     public void openScanner() {
-        IntentIntegrator integrator = new IntentIntegrator( MainActivity.activity );
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setOrientationLocked(true);
-        integrator.setPrompt("");
-        integrator.setCameraId(0);
-        integrator.setBeepEnabled(false);
-        integrator.setBarcodeImageEnabled(false);
-        integrator.initiateScan();
+//        IntentIntegrator integrator = new IntentIntegrator( MainActivity.activity );
+//        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+//        integrator.setOrientationLocked(true);
+//        integrator.setPrompt("");
+//        integrator.setCameraId(0);
+//        integrator.setBeepEnabled(false);
+//        integrator.setBarcodeImageEnabled(false);
+//        integrator.initiateScan();
     }
 
     @JavascriptInterface
     public void openScannerCamera() {
-        IntentIntegrator integrator = new IntentIntegrator( MainActivity.activity );
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setOrientationLocked(true);
-        integrator.setPrompt("");
-        integrator.setCameraId(1);
-        integrator.setBeepEnabled(false);
-        integrator.setBarcodeImageEnabled(false);
-        integrator.initiateScan();
+//        IntentIntegrator integrator = new IntentIntegrator( MainActivity.activity );
+//        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+//        integrator.setOrientationLocked(true);
+//        integrator.setPrompt("");
+//        integrator.setCameraId(1);
+//        integrator.setBeepEnabled(false);
+//        integrator.setBarcodeImageEnabled(false);
+//        integrator.initiateScan();
     }
 
 }
