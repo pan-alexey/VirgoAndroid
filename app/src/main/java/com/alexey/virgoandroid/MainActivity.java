@@ -9,14 +9,17 @@ import android.hardware.Camera;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.DragEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -24,6 +27,7 @@ import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -39,10 +43,17 @@ public class MainActivity extends AppCompatActivity implements ZBarScannerView.R
     protected static Activity activity;
     protected static WebView webView;
 
+
+
+
     //"file:///android_asset/index.html"
     private final String LOCAL_FILE = "file:///android_asset/index.html";
     ///------------------------------------//
     private ZBarScannerView mScannerView;
+
+
+//    protected ConstraintLayout QR_Layout;
+//    private ConstraintLayout.LayoutParams QR_Layout_Params;
 
 
 
@@ -92,7 +103,129 @@ public class MainActivity extends AppCompatActivity implements ZBarScannerView.R
 
 
 
+
+
+
+
+//
+//
+//        QR_Layout = (ConstraintLayout) findViewById(R.id.QR_Layout);
+//
+////
+////        layoutParams?.marginStart = event.x.toInt() - (view.width.div(2))
+////        layoutParams?.topMargin = event.y.toInt() - (view.height.div(2))
+////
+//
+//        QR_Layout.setOnDragListener(new View.OnDragListener(){
+//            @Override
+//            public boolean onDrag(View view, DragEvent event) {
+//                // TODO Auto-generated method stub
+//                final int action = event.getAction();
+//
+//
+//                switch(event.getAction()) {
+//                    case DragEvent.ACTION_DRAG_STARTED:
+//                        QR_Layout_Params = (ConstraintLayout.LayoutParams)view.getLayoutParams();
+//                        Log.d("-=VIEW=-", "Action is DragEvent.ACTION_DRAG_STARTED");
+//
+//                        // Do nothing
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_ENTERED:
+//                        Log.d("-=VIEW=-", "Action is DragEvent.ACTION_DRAG_ENTERED");
+//                        int x_cord = (int) event.getX();
+//                        int y_cord = (int) event.getY();
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_EXITED :
+//                        Log.d("-=VIEW=-", "Action is DragEvent.ACTION_DRAG_EXITED");
+//                        x_cord = (int) event.getX();
+//                        y_cord = (int) event.getY();
+//                        QR_Layout_Params.leftMargin = x_cord;
+//                        QR_Layout_Params.topMargin = y_cord;
+//                        view.setLayoutParams(QR_Layout_Params);
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_LOCATION  :
+//                        Log.d("-=VIEW=-", "Action is DragEvent.ACTION_DRAG_LOCATION");
+//                        x_cord = (int) event.getX();
+//                        y_cord = (int) event.getY();
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_ENDED   :
+//                        Log.d("-=VIEW=-", "Action is DragEvent.ACTION_DRAG_ENDED");
+//
+//                        // Do nothing
+//                        break;
+//
+//                    case DragEvent.ACTION_DROP:
+//                        Log.d("-=VIEW=-", "ACTION_DROP event");
+//
+//                        // Do nothing
+//                        break;
+//                    default: break;
+//                }
+//                return true;
+//            }
+//
+//                /*
+//                switch (action){
+//                    case DragEvent.ACTION_DRAG_STARTED:
+//                        // Executed after startDrag() is called.
+//                        QR_Layout_Params = (ConstraintLayout.LayoutParams)view.getLayoutParams();
+//                        break;
+//                    case DragEvent.ACTION_DRAG_EXITED:
+//                        x_cord = (int) event.getX();
+//                        y_cord = (int) event.getY();
+//
+//                        QR_Layout_Params.leftMargin = x_cord;
+//                        QR_Layout_Params.topMargin = y_cord;
+//                        view.setLayoutParams(QR_Layout_Params);
+//
+//                        break;
+//                    case DragEvent.ACTION_DRAG_ENTERED:
+//                        // Executed after the Drag Shadow enters the drop area
+//                        int x_cord = (int) event.getX();
+//                        int y_cord = (int) event.getY();
+//                        break;
+//                    case DragEvent.ACTION_DROP: {
+//                        //Executed when user drops the data
+//                        return (true);
+//                    }
+//                    case DragEvent.ACTION_DRAG_ENDED: {
+//
+//                    }
+//                    default:
+//                        break;
+//                }*/
+//
+//
+//        });
+//
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -110,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements ZBarScannerView.R
             mScannerView.setPadding(0,0,0,0);
             contentFrame.addView(mScannerView);
             mScannerView.setResultHandler(this);
-            mScannerView.setCameraDistance(13.0f);
+            mScannerView.setCameraDistance(48.0f);
             mScannerView.startCamera();
         }
         //-------------------------//
