@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements ZBarScannerView.R
             mScannerView.setPadding(0,0,0,0);
             contentFrame.addView(mScannerView);
             mScannerView.setResultHandler(this);
-            mScannerView.setCameraDistance(48.0f);
+            //mScannerView.setCameraDistance(48.0f);
             mScannerView.startCamera();
         }
         //-------------------------//
