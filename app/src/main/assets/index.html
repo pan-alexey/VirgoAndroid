@@ -1,32 +1,202 @@
-<!doctype html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Testing</title>
-</head>
-<body>
-<br><br><br><br>
-<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-<div class="containter">
-	<div id="QRCODE">QRCODE</div>
-	<div class="test">test</div>
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+      <title>VirgoCSS</title>
+      <meta name="Description" content="VirgoCSS">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+      <meta name="theme-color" content="#2196f3">
+
+      <!-- Add to home screen for Safari on iOS -->
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="apple-mobile-web-app-title" content="VirgoCSS">
+      <link rel="apple-touch-icon" href="/img/pwa-icons/icon-152x152.png">
+      <meta name="msapplication-TileImage" content="/img/pwa-icons/icon-152x152.png">
+      <meta name="msapplication-TileColor" content="#2F3BA2">
+
+      <!--[if lt IE 9]>
+        <script src="/js/polyfill.min.js"></script>
+      <![endif]-->
+
+      <style>
+      [v-cloak] > * { visibility: hidden; }
+      [v-cloak] { visibility: hidden; }
+      </style>
+      <!-- TODO add manifest here -->
+      <!--<link rel="manifest" href="/manifest.json">-->
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body >
+
+  <div id="vueApp">
+
+    <!--######################-->
+    <div class="activity activity-preload" v-bind:class="[{active:(activity=='activity-preload')}]">
+        <div class="content">
+          <img src="/img/preloader.gif" class="preloader" >
+        </div>
+    </div>
+    <!--######################-->
+
+    <!--######################-->
+    <div id="" class="activity activity-auth" v-bind:class="[{active:(activity=='activity-auth')}]">
+      <form  class="content" @submit.prevent="login">
+        <div class="title">АВТОРИЗАЦИЯ</div>
+        <div class="message">{{ activityAuth.error }}</div>
+        <div class="group">
+            <input v-model="activityAuth.login" type="text" required="required"/><span class="highlight"></span><span class="bar"></span>
+            <label>Логин</label>
+        </div>
+        <div class="group">
+            <input v-model="activityAuth.password" type="password" required="required"/><span class="highlight"></span><span class="bar"></span>
+            <label>Пароль</label>
+        </div>
+        <button  type="submit" class="btn">ВХОД</button>
+      </form >
+    </div>
+    <!--######################-->
+<!--######################-->
+    <div class="activity activity-qr" v-bind:class="[{active:(activity=='activity-qr')}]">
+        <div  class="content" v-bind:class="[activityQR.couponClass]">
+            <div class="coupon"><span>{{activityQR.coupon}}<span> </div>
+            <div class="caption" style="text-align: center">{{ activityQR.status}}</div>  
+            <div class="caption">Чек: <span>{{ activityQR.check}}<span> </div>
+            <div class="caption">Фио <span>{{ activityQR.fio}}<span> </div>
+            <div class="caption">Телефон <span>{{ activityQR.phone }}<span> </div>
+            <div class="caption">Информация <span>{{ activityQR.info}}<span> </div>
+            <br>
+        </div>
+
+        <div class="btn-wrapper" style="position: fixed;">
+          <button class="btn btn-enter"  @click="qrScanRegister();" v-bind:class="[{none:(activityQR.couponAction!='зарегистрировать')}]">ЗАРЕГИСТРИРОВАТЬ</button>
+          <button class="btn btn-cancel" @click="qrScanUnregister();" v-bind:class="[{none:(activityQR.couponAction!='отменить')}]">ОТМЕНИТЬ</button>
+        </div>
+
+    </div>
+<!--######################-->
+    <div class="activity activity-change" v-bind:class="[{active:(activity=='activity-change')}]">
+        <div class="content"  v-bind:class="[activityСhange.couponClass]">
+
+            <div class="group">
+                <input v-model="activityСhangeCouponEnter" type="number" required="required"/><span class="highlight"></span><span class="bar"></span>
+                <label>Номер купона</label>
+            </div>
+              <div class="coupon"><span>{{activityСhange.status}}<span> </div>
+                <div class="caption">Номер купона: <span>{{ activityСhange.coupon}}<span> </div> 
+              <div class="caption">Чек: <span>{{ activityСhange.check}}<span> </div>
+              <div class="caption">Фио <span>{{ activityСhange.fio }}<span> </div>
+              <div class="caption">Телефон <span>{{ activityСhange.phone }}<span> </div>
+              <div class="caption">Информация <span>{{ activityСhange.info}}<span> </div>
+            <br>
+         </div >
+
+
+          <div class="btn-wrapper" style="position: fixed;">
+              <button class="btn btn-enter"  @click="activityСhangeRegister();" v-bind:class="[{none:(activityСhange.couponAction!='зарегистрировать')}]">ЗАРЕГИСТРИРОВАТЬ</button>
+              <button class="btn btn-cancel" @click="activityСhangeUnregister();" v-bind:class="[{none:(activityСhange.couponAction!='отменить')}]">ОТМЕНИТЬ</button>
+          </div>
+
+
+    </div>
+
+<!--######################-->
+    <div class="activity activity-call" v-bind:class="[{active:(activity=='activity-call')}]">
+      <div class="content">
+          <div class="phone-list">
+            <a class="phone-cards" href="tel:89283331431">
+              <div class="avatar"></div>
+              <div class="info">
+                <div class="info-title">Пан Алексей</div>
+                <div class="info-caption">Программист</div>
+              </div>
+            </a>
+            <a class="phone-cards" href="tel:89283331431">
+                <div class="avatar"></div>
+                <div class="info">
+                  <div class="info-title">Пан Алексей</div>
+                  <div class="info-caption">Программист</div>
+                </div>
+            </a>
+            <a class="phone-cards" href="tel:89283331431">
+                <div class="avatar"></div>
+                <div class="info">
+                  <div class="info-title">Пан Алексей</div>
+                  <div class="info-caption">Программист</div>
+                </div>
+            </a>      
+          </div>
+      </div>
+    </div>
+<!--######################-->
+
+
+
+
+    <div class="activity activity-history" v-bind:class="[{active:(activity=='activity-history')}]">
+        <div>
+            <div v-for="item of historyArray">
+                <div>{{ item }}</div><br>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="activity activity-setting" v-bind:class="[{active:(activity=='activity-setting')}]">
+        <div  class="content">
+            <div class="title">Кабинет</div>
+            <br>
+            <div class="caption"> Пользователь: <span>{{user.name}}</span></div>
+            <div class="caption"> Количество транзакций: <span>{{history}}</span></div>
+            <br>
+            <button class="btn btn-export" @click="exportData();">ЭКСПОРТ</button>
+            <br>
+            <button class="btn btn-exit" @click="exit();">ВЫХОД</button>
+          </div >
+    </div>
+
+
+
+
+
+
+    <div class="bottom-tabs" v-bind:class="[{active:(activity!='activity-auth')}]">
+        <div class="tab" v-bind:class="[{active:(activity=='activity-qr')}]" @click="open_qr();"><img src="svg/camera.svg"></div>
+        <div class="tab" v-bind:class="[{active:(activity=='activity-change')}]" @click="open_change();"><img src="svg/view.svg"></div>
+        <div class="tab" v-bind:class="[{active:(activity=='activity-call')}]" @click="open_call();"><img src="svg/call.svg"></div>
+        <!--<div class="tab" v-bind:class="[{active:(activity=='activity-history')}]" @click="open_history();"><img src="svg/history.svg"></div> -->
+        <div class="tab" v-bind:class="[{active:(activity=='activity-setting')}]" @click="open_setting();"><img src="svg/account.svg"></div>
+    </div>
+
+
 </div>
-<br>1<br>1<br>1
-	<div class="btn btn-primary" onclick="btnClick('text')">Спулае мулае</div>
-<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
-</body>
+
+
+  </body>
 
 
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/marked@0.3.6"></script>
+  <script src="https://unpkg.com/lodash@4.16.0"></script>
 
-<script>
-	btnClick=function(){
-		//_API.showToast('text');
-		_API.openScanner();
-	}
-</script>
+  <script src="qr.js"></script>
+  <script src="lodash.min.js"></script>
+  <script src="lork.js"></script>
+  <script src="app.js"></script>
+
+
+
+
+
 
 
 </html>
